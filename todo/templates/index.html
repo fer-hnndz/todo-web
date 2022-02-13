@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block title %}
+ToDo
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <h1 class='text-center display-5 mb-5 mt-5'>Welcome Back</h1>
+</div>
+<hr>
+<div class="container-fluid">
+    <h2 class='mt-3 text-center'>Tasks</h4>
+        <br>
+        <div class="container text-center mt-3">
+            <button class='btn btn-primary d-inline text-center' data-bs-toggle="modal"
+                data-bs-target="#addTaskModal">Add
+                Task</button>
+            <button class='btn btn-danger d-inline text-center' data-bs-toggle="modal"
+                data-bs-target="#deleteTaskModal">Delete Task</button>
+        </div>
+
+        <!-- Modals-->
+
+        <!-- aria-labelledby="exampleModalLabel  tabindex="-1" -->
+        <div class="modal fade" id="addTaskModal" aria-hidden=" true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                        <!-- X on the top right of the modal -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id='addTaskForm' action="" method='POST'>
+                            {{ add_task_form.hidden_tag() }}
+                            <div class="form-group">
+                                {% if add_task_form.errors.task_name %}
+                                {% for error in add_task_form.task_name.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                <p class='form-label'>Task Name</p>
+                                {{ add_task_form.task_name(class = "form-control")}}
+                            </div>
+
+                            <div class="form-group">
+                                <p class='form-label mt-4'>Date & Time</p>
+                                {% if add_task_form.errors.due_date %}
+                                {% for error in add_task_form.due_date.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {{ add_task_form.due_date(class = "form-control")}}
+
+                                {% if add_task_form.errors.due_time %}
+                                {% for error in add_task_form.due_time.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {{ add_task_form.due_time(class = "form-control")}}
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        {{ add_task_form.submit(class = "btn btn-primary") }}
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteTaskModal" aria-hidden=" true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Task</h5>
+                        <!-- X on the top right of the modal -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id='addTaskForm' action="" method='POST'>
+                            <div class="form-group">
+                                <p class='form-label'>Task ID</p>
+                                <input type="number" class="form-control" id="taskId" name="taskId"
+                                    placeholder="Task ID">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Delete task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid mt-5">
+            {% for task in tasks %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h1 class='card-title'>{{ task.task_name }}</h1>
+                    <p class='card-text'>{{ task.get_date_label() }}</p>
+                    <p class='card-text'>ID: {{ task.id }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}
