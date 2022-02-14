@@ -85,17 +85,25 @@ ToDo
                     </div>
                     <div class="modal-body">
                         <form id='addTaskForm' action="" method='POST'>
+                            {{ delete_task_form.hidden_tag() }}
+
                             <div class="form-group">
-                                <p class='form-label'>Task ID</p>
-                                <input type="number" class="form-control" id="taskId" name="taskId"
-                                    placeholder="Task ID">
+                                {% if delete_task_form.task_id.errors %}
+                                {% for error in delete_task_form.task_id.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                <p class='form-label'>Enter the ID of the task you wish to delete.</p>
+                                {{ delete_task_form.task_id(class = "form-control")}}
                             </div>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger">Delete task</button>
+                        {{ delete_task_form.submit(class = "btn btn-danger") }}
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
