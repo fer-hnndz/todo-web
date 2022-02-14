@@ -26,6 +26,6 @@ class Task(db.Model):
                  '12': 'December'}
 
         month_index = f"{self.due_date.month:02}"
-        output = f'{month[month_index]} {self.due_date.day}, {self.due_date.year} @ {self.due_time.hour}:{self.due_time.minute}'
+        output = f'{month[month_index]} {self.due_date.day}, {self.due_date.year} @ {self.due_time.hour}:{self.due_time.minute:02}'
 
         return output
