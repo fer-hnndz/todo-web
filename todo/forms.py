@@ -16,6 +16,4 @@ class AddTaskForm(FlaskForm):
 
 
 class DeleteTaskForm(FlaskForm):
-    task_id = IntegerField('Task ID', validators=[DataRequired()])
-
     submit = SubmitField('Delete Task')

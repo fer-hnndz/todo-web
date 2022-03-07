@@ -75,49 +75,49 @@ ToDo
             </div>
         </div>
 
-        <div class="modal fade" id="deleteTaskModal" aria-hidden=" true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Task</h5>
-                        <!-- X on the top right of the modal -->
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id='addTaskForm' action="" method='POST'>
-                            {{ delete_task_form.hidden_tag() }}
-
-                            <div class="form-group">
-                                {% if delete_task_form.task_id.errors %}
-                                {% for error in delete_task_form.task_id.errors %}
-                                <div class="invalid-feedback">
-                                    {{ error }}
-                                </div>
-                                {% endfor %}
-                                {% endif %}
-                                <p class='form-label'>Enter the ID of the task you wish to delete.</p>
-                                {{ delete_task_form.task_id(class = "form-control")}}
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        {{ delete_task_form.submit(class = "btn btn-danger") }}
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
         <div class="container-fluid mt-5">
             {% for task in tasks %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h1 class='card-title'>{{ task.task_name }}</h1>
-                    <p class='card-text'>{{ task.get_date_label() }}</p>
-                    <p class='card-text'>ID: {{ task.id }}</p>
-                </div>
-            </div>
+
+            <form method="POST" action="">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1 class='card-title'>{{ task.task_name }}</h1>
+                        <p class='card-text'>{{ task.get_date_label() }}</p>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modal-{{ task.id }}">
+                            Eliminar
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Verification modal -->
+                    <div class="modal fade" id="modal-{{ task.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete Task</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this task?</p>
+                                    <p><strong>This action is irreversible.</strong></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Cancel</button>
+
+                                    {{ delete_task_form.submit(class = 'btn btn-danger', formaction =
+                                    url_for('delete_task', task_id = task.id)) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
             {% endfor %}
         </div>
 </div>
