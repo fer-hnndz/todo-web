@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}
+ToDo - Login
+{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <h1 class='text-center display-5 mb-5 mt-5'>Login</h1>
+    <hr>
+</div>
+<div class="container-lg text-center mt-3">
+    <form method='POST' , action="">
+        {{ form.hidden_tag()}}
+        <div class="form-floating">
+            {{ form.username(class = 'form-control', placeholder = 'Username', id = 'username') }}
+            <label for='username'>Username</label>
+        </div>
+
+        <div class="form-floating">
+            {{ form.password(class = 'form-control mt-3', placeholder = 'Password', id = 'password') }}
+            <label for='password'>Password</label>
+        </div>
+        {{ form.submit(class = 'btn btn-primary mt-5 mb-4', value = 'Login') }}
+    </form>
+
+    <p>Don't have an account? <a href={{ url_for('register') }}>Sign up now</a>.</p>
+
+</div>
+{% endblock %}
