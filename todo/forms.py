@@ -1,6 +1,4 @@
-from distutils.text_file import TextFile
 from flask_wtf import FlaskForm
-from sqlalchemy import Integer
 from wtforms import StringField, DateField, TimeField, SubmitField, StringField, PasswordField
 from wtforms.validators import DataRequired, EqualTo, Length
 
