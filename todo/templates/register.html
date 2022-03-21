@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}
+ToDo - Register
+{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <h1 class='text-center display-5 mb-5 mt-5'>Sign Up</h1>
+    <hr>
+</div>
+<div class="container-lg text-center mt-3">
+    <form method='POST'>
+        {{ register_form.hidden_tag() }}
+
+        <div class="form-floating">
+            {% if register_form.username.errors %}
+            {{ register_form.username(class = "form-control is-invalid", id = "username", placeholder = "Username")}}
+
+            {% for error in register_form.username.errors %}
+            <div class="invalid-feedback">
+                {{ error }}
+            </div>
+            {% endfor %}
+
+            {% else %}
+            {{ register_form.username(class = "form-control", id = "username", placeholder = "Username")}}
+            {% endif %}
+            <label for='username'>Username</label>
+        </div>
+
+        <div class="form-floating">
+            {% if register_form.password.errors %}
+            {% for error in register_form.password.errors %}
+
+            <div class="invalid-feedback">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {{ register_form.password(class = "form-control mt-3", id = "password", placeholder = "Password")}}
+            <label for='password'>Password</label>
+        </div>
+
+        <div class="form-floating">
+            {% if register_form.confirm_password.errors %}
+            {% for error in register_form.confirm_password.errors %}
+
+            <div class="invalid-feedback">
+                {error}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {{ register_form.confirm_password(class = "form-control mt-3", id = "confirm-password", placeholder =
+            "Confirm
+            Password")}}
+            <label for='password'>Confirm Password</label>
+        </div>
+
+        {{ register_form.submit(class = "btn btn-primary mt-5 mb-4")}}
+    </form>
+
+    <p>Already have an account? <a href={{ url_for('login') }}>Log In</a>.</p>
+
+</div>
+{% endblock %}
