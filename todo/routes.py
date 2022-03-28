@@ -73,7 +73,8 @@ def login():
         username = form.username.data
         password = form.password.data
 
-        user = Users.query.filter_by(username=username).first()
+        user = Users.query.filter_by(
+            username=username, password=password).first()
 
         if user is not None:
             login_user(user)
@@ -95,7 +96,7 @@ def register():
             username = register_form.username.data
             password = register_form.password.data
 
-            # Check if username is talen
+            # Check if username is taken
 
             user = Users.query.filter_by(username=username).first()
 
