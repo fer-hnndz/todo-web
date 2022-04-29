@@ -5,7 +5,7 @@
 
 
 A simple webpage that helps you to keep track of your tasks.<br>
-Created for Episcopal Science and Technology Fair 2022.
+*2nd finalist in the Episcopal Science and Technology Fair 2022.*
 
 <img src = '.github/docs/static/showcase.png' width = 800>
 
