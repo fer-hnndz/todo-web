@@ -1,0 +1,28 @@
+[project]
+name = "todo-web"
+version = "1.0"
+description = "A simple todo web app made with Flask"
+authors = [{ name = "fer-hnndz", email = "jfernandohernandez28@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "flask (>=3.1.1,<4.0.0)",
+    "flask-login (>=0.6.3,<0.7.0)",
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "flask-wtf (>=1.2.2,<2.0.0)",
+    "sqlalchemy (>=2.0.41,<3.0.0)",
+    "psycopg2 (>=2.9.10,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.3.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
