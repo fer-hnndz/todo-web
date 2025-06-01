@@ -3,63 +3,45 @@
 [![GitHub license](https://img.shields.io/github/license/MrFellox/todo-web?color=blue&label=License&style=for-the-badge)](https://github.com/MrFellox/todo-web)
 ![Version](https://img.shields.io/badge/Version-1.0.0-red?style=for-the-badge)
 
-
 A simple webpage that helps you to keep track of your tasks.<br>
-*2nd finalist in the Episcopal Science and Technology Fair 2022.*
+_2nd finalist in the Episcopal Science and Technology Fair 2022._
 
 <img src = '.github/docs/static/showcase.png' width = 800>
 
-
-Para leer las instrucciones en Español, ve [aquí](https://github.com/mrfellox/todo-web/blob/main/README_ES.md).
-
 ## Features
+
 <li>Responsive design</li>
 <li>Runs on your local network. So you can access this page on any device that is connected to your network.</li>
 <li>Simple, miniaturized, and minimalistic</li>
 
-
 ## Getting Started
 
-#### Dependencies
+### Running with Docker Compose
 
-Before starting, make sure you have installed [Python](https://python.org/download) 3.9 or above, and make sure it is added to the PATH. You'll also need [SQLite3](https://www.sqlite.org/index.html)
+To run the app using Docker, you need to have [Docker](https://www.docker.com/get-started) installed on your machine.
 
-#### Setup and installation
+1. **Clone the repository** or download the source code from GitHub.
+2. **Set `POSTGRES_HOST` to `db` and `POSTGRES_PORT` to `5432`** on the `.env` file. The rest of the variables can be filled in as you wish.
 
-1. [Download](https://github.com/MrFellox/todo-web/archive/refs/heads/main.zip) the source code from GitHub, or clone this respository with Git.
+> [!NOTE]
+> This is the default configuration for the Docker Compose setup. If you need to change this make sure to also change the `docker-compose.yml` file accordingly.
 
-```shell
-git clone https://github.com/MrFellox/todo-web.git
-```
+### Running from Source
 
-3. **(Recommended)** Create a new virtual environment and activate it.
+Before starting, make sure you have installed [Python](https://python.org/download) 3.9 or above, and PostgreSQL.
 
-```shell
-# Example for Windows
+1. [Download](https://github.com/MrFellox/todo-web/archive/refs/heads/main.zip) the source code from GitHub, or clone this respository.
 
-# Create a new virtual environment
-python3 -m venv venv
-
-# Activate the virtual environment (you'll need to activate it every time you use this project)
-venv\Scripts\activate
-```
-
-2. Install all dependencies with pip.
+2. **(Recommended)** Install web app dependencies using [Poetry](https://python-poetry.org/docs/).
 
 ```shell
-pip install -r requirements.txt
+$ poetry install
 ```
 
-3. Create the database.
+3. (Optional) If you don't want to use Poetry, you can install the dependencies manually using pip.
+
 ```shell
-# This command only applies to Windows users, if you are in any other OS, just follow the commands in todo/create_db.sql
-
-db_setup.bat
+$ pip install -r requirements.txt
 ```
 
-4. Run the Flask dev server.
-```shell
-python3 start.py
-```
-
-You can now access the URL that is shown in the console and now you can use the app.
+4. Refer to `.env.example` to create a `.env` file in the root directory of the project. This file is used to configure the app.
