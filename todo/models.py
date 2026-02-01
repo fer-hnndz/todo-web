@@ -1,7 +1,9 @@
-from todo import db, login_manager
+from datetime import datetime
+
 from flask_login import UserMixin
 from sqlalchemy.orm import Mapped, mapped_column
-from datetime import datetime
+
+from todo import db, login_manager
 
 
 @login_manager.user_loader

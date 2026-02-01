@@ -1,38 +1,42 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, TimeField, SubmitField, StringField, PasswordField
+from wtforms import DateField, PasswordField, StringField, SubmitField, TimeField
 from wtforms.validators import DataRequired, EqualTo, Length
 
 
 class AddTaskForm(FlaskForm):
-    task_name = StringField('Task Name', validators=[DataRequired()])
-    due_date = DateField('Due Date', validators=[
-                         DataRequired()])
+    task_name = StringField("Task Name", validators=[DataRequired()])
+    due_date = DateField("Due Date", validators=[DataRequired()])
 
-    due_time = TimeField('Due Time', validators=[
-                         DataRequired()])
+    due_time = TimeField("Due Time", validators=[DataRequired()])
 
-    submit = SubmitField('Add Task')
+    submit = SubmitField("Add Task")
 
 
 class DeleteTaskForm(FlaskForm):
-    submit = SubmitField('Delete Task')
+    submit = SubmitField("Delete Task")
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[
-        DataRequired(), Length(min=5, max=35)])
+    username = StringField(
+        "Username", validators=[DataRequired(), Length(min=5, max=35)]
+    )
 
-    password = PasswordField('Password', validators=[
-        DataRequired(), Length(min=5, max=100), EqualTo('confirm_password', message='Passwords must match.')])
+    password = PasswordField(
+        "Password",
+        validators=[
+            DataRequired(),
+            Length(min=5, max=100),
+            EqualTo("confirm_password", message="Passwords must match."),
+        ],
+    )
 
-    confirm_password = PasswordField('Confirm Password', validators=[
-        DataRequired()])
+    confirm_password = PasswordField("Confirm Password", validators=[DataRequired()])
 
-    submit = SubmitField('Register')
+    submit = SubmitField("Register")
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
 
-    submit = SubmitField('Login')
+    submit = SubmitField("Login")

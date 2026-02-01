@@ -1,10 +1,12 @@
-from flask import render_template, redirect, url_for, flash, current_app
-from flask_login import login_user, current_user, logout_user, login_required
-from todo.forms import AddTaskForm, DeleteTaskForm, RegisterForm, LoginForm
-from todo.models import Task, Users
-from todo import db
-from datetime import datetime
 import traceback
+from datetime import datetime
+
+from flask import current_app, flash, redirect, render_template, url_for
+from flask_login import current_user, login_required, login_user, logout_user
+
+from todo import db
+from todo.forms import AddTaskForm, DeleteTaskForm, LoginForm, RegisterForm
+from todo.models import Task, Users
 
 app = current_app
 

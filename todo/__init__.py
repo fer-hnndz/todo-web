@@ -1,9 +1,10 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from dotenv import load_dotenv
-from sqlalchemy.orm import DeclarativeBase
 import os
+
+from dotenv import load_dotenv
+from flask import Flask
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
 
 class Base(DeclarativeBase):
@@ -15,7 +16,6 @@ login_manager = LoginManager()
 
 
 def create_app():
-    load_dotenv()
 
     HOST = os.environ.get("POSTGRES_HOST")
     PORT = os.environ.get("POSTGRES_PORT")
@@ -30,6 +30,10 @@ def create_app():
 
     app = Flask(__name__)
     app.secret_key = os.environ.get("SECRET")
+
+    if not app.secret_key:
+        raise ValueError("SECRET environment variable is not set.")
+
     app.config["SQLALCHEMY_DATABASE_URI"] = (
         f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
     )
